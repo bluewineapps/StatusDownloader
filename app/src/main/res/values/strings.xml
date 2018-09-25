@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Status Downloader</string>
+    <string name="permission_necessary">permission nessesory</string>
+    <string name="storage_permission_is_encessary_to_wrote_event">permission for event</string>
+
+</resources>
