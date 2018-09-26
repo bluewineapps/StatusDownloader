@@ -11,14 +11,15 @@ import android.widget.ImageView;
 
 import com.bluewine.statusdownloader.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StatusImageAdapter extends RecyclerView.Adapter<StatusImageAdapter.MyViewHolder> {
 
-    private String[] images;
+    private ArrayList<String> images;
     private String path;
 
-    public StatusImageAdapter(String[] images,String path){
+    public StatusImageAdapter(ArrayList<String> images, String path){
         this.images=images;
         this.path=path;
     }
@@ -34,13 +35,13 @@ public class StatusImageAdapter extends RecyclerView.Adapter<StatusImageAdapter.
     @Override
     public void onBindViewHolder(@NonNull StatusImageAdapter.MyViewHolder myViewHolder, int i) {
 
-        Bitmap bitmap = BitmapFactory.decodeFile(path+"/"+images[i]);
+        Bitmap bitmap = BitmapFactory.decodeFile(path+"/"+images.get(i));
         myViewHolder.imageView.setImageBitmap(bitmap);
     }
 
     @Override
     public int getItemCount() {
-        return images.length;
+        return images.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

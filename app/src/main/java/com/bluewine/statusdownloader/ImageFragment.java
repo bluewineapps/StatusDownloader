@@ -1,5 +1,6 @@
 package com.bluewine.statusdownloader;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bluewine.statusdownloader.adapter.StatusImageAdapter;
+import com.bluewine.statusdownloader.listener.RecyclerTouchListener;
+import com.bluewine.statusdownloader.utill.HelpperMethods;
 import com.bluewine.statusdownloader.utill.Loader;
 
 import org.json.JSONArray;
@@ -58,15 +61,21 @@ public class ImageFragment extends Fragment{
         Log.i("LOAD","------------- "+Environment.getExternalStorageDirectory().getAbsolutePath());
         Log.i("LOAD","------------- "+Environment.getExternalStorageDirectory().getAbsolutePath()+"/WhatsApp/Media/.Statuses/");
 
-        File hiddenpath = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/WhatsApp/Media/.Statuses/");
+        final File hiddenpath = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/WhatsApp/Media/.Statuses/");
 
         Log.i("LOAD","------------- "+hiddenpath.getAbsolutePath());
-        String[] files = hiddenpath.list();
-        for(String f : files){
+        String[] fileName = hiddenpath.list();
+        final ArrayList<String> imageFiles = new ArrayList<>();
+        for(String f : fileName){
             Log.i("LOAD","------------- "+f);
+            if(HelpperMethods.isImage(f)){
+                imageFiles.add(f);
+            }
         }
 
         Log.i("LOAD","------------- ? "+hiddenpath.canRead());
+
+
 
 
 
@@ -77,9 +86,27 @@ public class ImageFragment extends Fragment{
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),3);
-        StatusImageAdapter statusImageAdapter = new StatusImageAdapter(files,hiddenpath.getAbsolutePath());
+        StatusImageAdapter statusImageAdapter = new StatusImageAdapter(imageFiles,hiddenpath.getAbsolutePath());
         recyclerView.setAdapter(statusImageAdapter);
         recyclerView.setLayoutManager(gridLayoutManager);
+
+        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+
+                Intent intent =new Intent(getActivity(),ImageViewActivity.class);
+                intent.putExtra("path",hiddenpath.getAbsolutePath()+"/"+imageFiles.get(position));
+
+                startActivity(intent);
+
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
+
     }
 
 }

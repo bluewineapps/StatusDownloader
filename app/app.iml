@@ -157,6 +157,7 @@
     <orderEntry type="library" name="Gradle: com.android.support:cursoradapter-28.0.0-rc01" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-core-utils-28.0.0-rc01" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support.constraint:constraint-layout-solver:1.1.3@jar" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.clans:fab-1.6.2" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.lifecycle:runtime-1.1.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: net.sf.kxml:kxml2:2.3.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:coordinatorlayout-28.0.0-rc01" level="project" />
