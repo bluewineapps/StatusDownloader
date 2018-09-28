@@ -7,16 +7,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/detail_imageViews"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:layout_gravity="center_vertical"
+        android:scaleType="fitXY"/>
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/detail_imageViews"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"/>
+
 
         <com.github.clans.fab.FloatingActionMenu
             android:id="@+id/material_design_android_floating_action_menu"
@@ -59,7 +62,13 @@
             fab:menu_showShadow="false">
 
 
-
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/material_design_floating_action_menu_item1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/fab_add"
+                fab:fab_label="Share"
+                fab:fab_size="mini" />
             <com.github.clans.fab.FloatingActionButton
                 android:id="@+id/material_design_floating_action_menu_item2"
                 android:layout_width="wrap_content"
@@ -80,11 +89,5 @@
 
     </RelativeLayout>
 
-    <ProgressBar
-        android:id="@+id/progress"
-        android:layout_width="match_parent"
-        android:layout_gravity="center_vertical"
-        android:layout_height="20dp"
-        android:visibility="visible" />
 
 </android.support.design.widget.CoordinatorLayout>
