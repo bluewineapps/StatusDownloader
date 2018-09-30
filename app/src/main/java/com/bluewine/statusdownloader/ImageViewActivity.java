@@ -7,13 +7,20 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
+
+import org.apache.commons.io.FileUtils;
+
+import java.io.File;
+import java.io.IOException;
 
 public class ImageViewActivity extends AppCompatActivity {
 
@@ -32,7 +39,7 @@ public class ImageViewActivity extends AppCompatActivity {
 
         imageView =findViewById(R.id.detail_imageViews);
         final Intent intent = getIntent();
-        String imageUrl =intent.getStringExtra("path");
+        final String imageUrl =intent.getStringExtra("path");
 
         final Bitmap bitmap = BitmapFactory.decodeFile(imageUrl);
         imageView.setImageBitmap(bitmap);
@@ -41,7 +48,7 @@ public class ImageViewActivity extends AppCompatActivity {
 
         floatingActionButton3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                addImageToGallery(getApplicationContext(),bitmap);
+                addImageToGallery(getApplicationContext(),imageUrl);
 
             }
         });
@@ -49,8 +56,21 @@ public class ImageViewActivity extends AppCompatActivity {
 
 
 
-    public static void addImageToGallery(Context context,Bitmap bitmap) {
+    public static void addImageToGallery(Context context,String source) {
 
-        MediaStore.Images.Media.insertImage(context.getApplicationContext().getContentResolver(), bitmap,"", "");
+        //
+        Toast.makeText(context,"clicked",Toast.LENGTH_LONG).show();
+        File sourceFIle=new File(source);
+        String destinationPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/statusDownloder/"+sourceFIle.getName();
+        File destination = new File(destinationPath);
+
+        try
+        {
+            FileUtils.copyFile(sourceFIle, destination);
+            MediaStore.Images.Media.insertImage(context.getApplicationContext().getContentResolver(), BitmapFactory.decodeFile(destinationPath),"", "");
+        }catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 }

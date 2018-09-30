@@ -2,6 +2,7 @@ package com.bluewine.statusdownloader.adapter;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 
 import com.bluewine.statusdownloader.R;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +36,7 @@ public class StatusImageAdapter extends RecyclerView.Adapter<StatusImageAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull StatusImageAdapter.MyViewHolder myViewHolder, int i) {
+
 
         Bitmap bitmap = BitmapFactory.decodeFile(path+"/"+images.get(i));
         myViewHolder.imageView.setImageBitmap(bitmap);

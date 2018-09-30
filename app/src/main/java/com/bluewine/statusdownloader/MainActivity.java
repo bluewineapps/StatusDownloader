@@ -5,6 +5,7 @@ import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -23,6 +24,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,31 +42,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        File myDirectory = new File(Environment.getExternalStorageDirectory(), "statusDownloder");
 
+        if(!myDirectory.exists()) {
+            myDirectory.mkdirs();
+        }else{
+            Log.e("directory", "folder already exists");
+        }
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-
-
-
-        Log.i("LOAD","------------- Build.VERSION.SDK_INT  "+ Build.VERSION.SDK_INT);
-
-
-        if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        }
-
-        if (!checkPermission()) {
-            openActivity();
-        } else {
-            if (checkPermission()) {
-                requestPermissionAndContinue();
-                openActivity();
-            } else {
-                openActivity();
-            }
-        }
 
         viewPager = (ViewPager) findViewById(R.id.pager);
         setupViewPager(viewPager);
