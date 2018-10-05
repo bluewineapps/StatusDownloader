@@ -9,3 +9,14 @@ Status Saver for WhatsApp, is a free application that allows you to download Wha
 </br>
 
 <a href="https://play.google.com/store/apps/details?id=com.bluewine.statusdownloader"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" width="200px"/></a>
+
+How do I use the Status Saver application?
+
+-	Open the application on your phone
+-	Click on WhatsApp icon at the top of the screen
+-	Open recent WhatsApp statues page
+-	Go back to the application of Status Saver again and you will find the statuses visible 
+on the main screen
+-	Select WhatsApp status you want to save
+-	Click the download button below the image or video
+-	Press the Gallery button to find the cases you have downloaded
